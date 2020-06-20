@@ -9,18 +9,21 @@ const StyledBoard = styled.div`
   width: 144px;
 `
 
-function Board() {
+function Board(props) {
+  
+  const {squares, onClick} = props
+  const renderSquares = squares.map((i) =>
+    <Square 
+      key={i}
+      value={i}
+      win={true}
+      onClick={() => onClick(i)}
+    />
+  )
+  
   return(
     <StyledBoard>
-      <Square />
-      <Square />
-      <Square />
-      <Square />
-      <Square />
-      <Square />
-      <Square />
-      <Square />
-      <Square />
+      {renderSquares}
     </StyledBoard>
   )
 }

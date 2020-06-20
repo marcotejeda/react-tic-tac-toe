@@ -21,8 +21,10 @@ const Button = styled.button`
 
 function Square(props) {
   return(
-    <Button>
-      X
+    <Button
+      onClick={props.onClick}
+      win={props.win}>
+        {props.value}
     </Button>
   )
 }
