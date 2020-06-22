@@ -11,15 +11,25 @@ const StyledBoard = styled.div`
 
 function Board(props) {
   
-  const {squaresList, onClick} = props
-  const renderSquares = squaresList.map((square, i) =>
-    <Square 
-      key={i}
-      value={square}
-      win={false}
-      onClick={() => onClick(i)}
-    />
-  )
+  const {squaresList, onClick, winner} = props
+  const renderSquares = squaresList.map((value, i) => {
+
+    let isWin = false
+    for(var w = 0; w < winner.length; w++){
+      if(winner && winner[w] === i) {
+        isWin = true
+      }
+    }
+
+    return(
+      <Square 
+        key={i}
+        value={value}
+        win={isWin}
+        onClick={() => onClick(i)}
+      />
+    )
+  })
 
   return(
     <StyledBoard>

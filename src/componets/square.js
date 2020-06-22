@@ -6,7 +6,7 @@ const Button = styled.button`
   border: 2px solid #282c34;
   color: ${props => props.win ? "white" : "#282c34"};
   font-size: 1.8em;
-  font-weight: ${props => props.win ? "600" : "100"};
+  font-weight: bold;
   line-height: 50px;
   height: 50px;
   margin-right: -2px;
