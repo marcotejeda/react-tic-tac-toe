@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const StyledBoard = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
-  margin: 5em auto 0;
+  margin: 0 auto;
   width: 144px;
 `
 

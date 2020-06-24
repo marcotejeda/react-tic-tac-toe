@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Header from './componets/header'
 import Board from './componets/board'
+import Status from './componets/status'
 
 function App() {
   
@@ -49,6 +50,7 @@ function App() {
   return (
     <>
       <Header/>
+      <Status/>
       <Board
         squaresList={useSquaresList}
         onClick={(i) => handeClick(i)}

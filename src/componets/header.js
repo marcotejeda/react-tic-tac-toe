@@ -35,7 +35,7 @@ function Header(){
   return(
     <StyledHeader>
       <img src={logo} className="header-logo" alt="logo" />
-      <h1 className="header-title">Challenge from React.</h1>
+      <h1 className="header-title">React Tic Tac Toe challenge</h1>
     </StyledHeader>
   )
 }
