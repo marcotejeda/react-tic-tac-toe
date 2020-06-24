@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Header from './componets/header'
 import Board from './componets/board'
 import Status from './componets/status'
+import History from './componets/history'
 
 function App() {
   
@@ -56,6 +57,7 @@ function App() {
         onClick={(i) => handeClick(i)}
         winner={useThereWinner}
       />
+      <History/>
     </>
   );
 }
