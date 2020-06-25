@@ -9,6 +9,7 @@ function App() {
   const [useSquaresList, setSquaresList] = useState(Array(9).fill(null))
   const [useIsNextPlay, setIsNextPlay] = useState(true)
   const [useThereWinner, setThereWinner] = useState(false)
+  const [useStatus, setStatus] = useState('Next Player: X')
 
   function calculateWinner(squares) {
     const lines = [
@@ -43,7 +44,12 @@ function App() {
     setSquaresList(squares)
 
     const winner = calculateWinner(useSquaresList)
-    if(winner) setThereWinner(winner.lines)
+    if(winner) {
+      setThereWinner(winner.lines)
+      setStatus('Winner: ' + winner.winner)
+    } else {
+      setStatus('Next Player: ' + (useIsNextPlay ? 'O' : 'X'))
+    }
 
     setIsNextPlay(!useIsNextPlay)
   }
@@ -51,7 +57,9 @@ function App() {
   return (
     <>
       <Header/>
-      <Status/>
+      <Status
+        statusText={useStatus}
+      />
       <Board
         squaresList={useSquaresList}
         onClick={(i) => handeClick(i)}

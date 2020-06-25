@@ -11,7 +11,7 @@ function Status(props) {
 
   return(
     <StyleStatus>
-      Next player: X
+      {props.statusText}
     </StyleStatus>
   )
 }
