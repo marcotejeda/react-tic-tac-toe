@@ -6,7 +6,11 @@ import History from './componets/history'
 
 function App() {
   
-  const [useSquaresList, setSquaresList] = useState(Array(9).fill(null))
+  const [useHistory, setHistory] = useState({
+    squaresList: Array(9).fill(null),
+    squareSelected: null
+  })
+  const [useStepNumber, setStepNumber] = useState(0)
   const [useIsNextPlay, setIsNextPlay] = useState(true)
   const [useThereWinner, setThereWinner] = useState(false)
   const [useStatus, setStatus] = useState('Next Player: X')
@@ -37,13 +41,16 @@ function App() {
   }
 
   function handeClick(i) {
-    if(useThereWinner || useSquaresList[i]) return
+    if(useThereWinner || useHistory.squaresList[i]) return
 
-    const squares = useSquaresList
+    const squares = useHistory.squaresList
     squares[i] = useIsNextPlay ? 'X' : 'O'
-    setSquaresList(squares)
+    setHistory({
+      ...useHistory,
+      squaresList: squares
+    })
 
-    const winner = calculateWinner(useSquaresList)
+    const winner = calculateWinner(useHistory.squaresList)
     if(winner) {
       setThereWinner(winner.lines)
       setStatus('Winner: ' + winner.winner)
@@ -61,7 +68,7 @@ function App() {
         statusText={useStatus}
       />
       <Board
-        squaresList={useSquaresList}
+        squaresList={useHistory.squaresList}
         onClick={(i) => handeClick(i)}
         winner={useThereWinner}
       />
