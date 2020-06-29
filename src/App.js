@@ -7,19 +7,19 @@ import History from './componets/history'
 
 function App() {
   
-  const [useHistory, setHistory] = useState([{
-    squaresList: Array(9).fill(null),
-    squareSelected: null
-  }])
-  const [useStep, setStep] = useState(0)
   const [useIsNextPlay, setIsNextPlay] = useState(true)
   const [useThereWinner, setThereWinner] = useState(false)
   const [useStatus, setStatus] = useState({
     turn: 'X',
     winner: null
   })
+  const [useStep, setStep] = useState(0)
+  const [useHistory, setHistory] = useState([{
+    squaresList: Array(9).fill(null),
+    squareSelected: null
+  }])
 
-  function handeClick(i) {
+  function handleClick(i) {
     const selected = useHistory[useStep].squaresList[i]
     if(useThereWinner || selected) return
 
@@ -35,6 +35,10 @@ function App() {
     setIsNextPlay(!useIsNextPlay)
   }
 
+  function handleToStep(step) {
+    console.log(step)
+  }
+
   useEffect(() => {
     const current = useHistory[useStep]
     const winner = calculateWinner(current.squaresList)
@@ -42,6 +46,7 @@ function App() {
       setThereWinner(winner.lines)
       setStatus({winner: winner.winner})
     } else {
+      setThereWinner(false)
       if(useStep > 8) {
         setStatus({winner: 'Dead heat'})
       } else {
@@ -56,10 +61,13 @@ function App() {
       <Status status={useStatus} />
       <Board
         squaresList={useHistory[useStep].squaresList}
-        onClick={(i) => handeClick(i)}
         winner={useThereWinner}
+        onClick={(i) => handleClick(i)}
       />
-      <History/>
+      <History 
+        history={useHistory}
+        onClick={(move) => handleToStep(move)}
+      />
     </>
   );
 }
