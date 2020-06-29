@@ -9,9 +9,24 @@ const StyleStatus = styled.div`
 
 function Status(props) {
 
+  const {status} = props
+  let text = ""
+
+  switch(status.winner) {
+    case 'Dead heat':
+      text = status.winner
+      break;
+    default:
+      if(status.winner){
+        text = "Winner: " + status.winner
+      } else {
+        text = "Next player: " + status.turn
+      }
+  }
+
   return(
     <StyleStatus>
-      {props.statusText}
+      {text}
     </StyleStatus>
   )
 }

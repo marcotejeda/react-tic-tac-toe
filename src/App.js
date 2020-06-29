@@ -14,7 +14,10 @@ function App() {
   const [useStep, setStep] = useState(0)
   const [useIsNextPlay, setIsNextPlay] = useState(true)
   const [useThereWinner, setThereWinner] = useState(false)
-  const [useStatus, setStatus] = useState('Next Player: X')
+  const [useStatus, setStatus] = useState({
+    turn: 'X',
+    winner: null
+  })
 
   function handeClick(i) {
     const selected = useHistory[useStep].squaresList[i]
@@ -37,18 +40,20 @@ function App() {
     const winner = calculateWinner(current.squaresList)
     if(winner) {
       setThereWinner(winner.lines)
-      setStatus('Winner: ' + winner.winner)
+      setStatus({winner: winner.winner})
     } else {
-      setStatus('Next Player: ' + (useIsNextPlay ? 'O' : 'X'))
+      if(useStep > 8) {
+        setStatus({winner: 'Dead heat'})
+      } else {
+        setStatus({turn: useIsNextPlay ? 'X' : 'O'})
+      }
     }
   }, [useHistory, useStep, useIsNextPlay]);
 
   return (
     <>
       <Header/>
-      <Status
-        statusText={useStatus}
-      />
+      <Status status={useStatus} />
       <Board
         squaresList={useHistory[useStep].squaresList}
         onClick={(i) => handeClick(i)}
