@@ -10,9 +10,8 @@ const StyledBoard = styled.div`
 `
 
 function Board(props) {
-  
-  const {squaresList, onClick, winner} = props
-  const renderSquares = squaresList.map((value, i) => {
+  const {history, step, winner, onClick} = props
+  const renderSquares = history[step].squaresList.map((value, i) => {
 
     let isWin = false
     for(var w = 0; w < winner.length; w++){

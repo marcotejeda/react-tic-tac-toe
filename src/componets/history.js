@@ -18,7 +18,7 @@ const StyleHistory = styled.div`
 
 function History(props) {
 
-  const {onClick, history} = props
+  const {history, onClick} = props
   const moves = history.map((step, move) => {
     const moveRow = Math.floor(history[move].squareSelected / 3) + 1
     const moveCol = (history[move].squareSelected % 3) + 1

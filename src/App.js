@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {calculateWinner} from './helpers'
 import Header from './componets/header'
 import Board from './componets/board'
@@ -23,7 +23,7 @@ function App() {
     const selected = useHistory[useStep].squaresList[i]
     if(useThereWinner || selected) return
 
-    const history = useHistory.slice(0, setStep(useStep + 1))
+    const history = useHistory.slice(0, useStep + 1)
     const current = history[history.length - 1]
     const squares = current.squaresList.slice()
     squares[i] = useIsNextPlay ? 'X':'O'
@@ -32,11 +32,14 @@ function App() {
       squaresList: squares,
       squareSelected:i
     }))
+    setStep(history.length)
     setIsNextPlay(!useIsNextPlay)
   }
 
   function handleToStep(step) {
-    console.log(step)
+    setHistory(useHistory.slice(0, step + 1))
+    setStep(step)
+    setIsNextPlay((step % 2) === 0)
   }
 
   useEffect(() => {
@@ -60,14 +63,15 @@ function App() {
       <Header/>
       <Status status={useStatus} />
       <Board
-        squaresList={useHistory[useStep].squaresList}
+        history={useHistory}
+        step={useStep}
         winner={useThereWinner}
         onClick={(i) => handleClick(i)}
       />
-      <History 
+      {<History 
         history={useHistory}
         onClick={(move) => handleToStep(move)}
-      />
+      />}
     </>
   );
 }
