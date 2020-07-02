@@ -14,6 +14,7 @@ const Button = styled.button`
   padding: 0;
   text-align: center;
   width: 50px;
+  cursor: pointer;
   :focus {
     outline: none;
   }

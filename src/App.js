@@ -70,6 +70,7 @@ function App() {
       />
       {<History 
         history={useHistory}
+        step={useStep}
         onClick={(move) => handleToStep(move)}
       />}
     </>

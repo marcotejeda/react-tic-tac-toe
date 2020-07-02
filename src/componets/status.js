@@ -5,6 +5,7 @@ const StyleStatus = styled.div`
   font-size: 1.5em;
   margin: 1.5em auto;
   text-align: center;
+  font-weight: bold;
 `
 
 function Status(props) {
