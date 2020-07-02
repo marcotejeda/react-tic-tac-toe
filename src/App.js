@@ -68,11 +68,11 @@ function App() {
         winner={useThereWinner}
         onClick={(i) => handleClick(i)}
       />
-      {<History 
+      <History 
         history={useHistory}
         step={useStep}
         onClick={(move) => handleToStep(move)}
-      />}
+      />
     </>
   );
 }
